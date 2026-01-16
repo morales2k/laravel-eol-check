@@ -40,31 +40,33 @@ sudo yum install jq curl
 
 1. Download the script:
 ```bash
-curl -o check-laravel-eol.sh https://raw.githubusercontent.com/your-repo/check-laravel-eol.sh
+curl -o lvc.sh https://raw.githubusercontent.com/morales2k/laravel-eol-check/refs/heads/main/lvc.sh
 ```
 
 2. Make it executable:
 ```bash
-chmod +x check-laravel-eol.sh
+chmod +x lvc.sh
 ```
 
 3. Optionally, move to a directory in your PATH:
 ```bash
-sudo mv check-laravel-eol.sh /usr/local/bin/check-laravel-eol
-```
+sudo mv lvc.sh /usr/local/bin/lvc
 
+#OR: Add the bin folder included in the repo to your path.
+```
+---
 ## Usage
 
 Navigate to your Laravel project root directory and run:
 
 ```bash
-./check-laravel-eol.sh
+./lvc.sh
 ```
 
 Or if installed globally:
 
 ```bash
-check-laravel-eol
+lvc
 ```
 
 ## Output Information
@@ -105,7 +107,7 @@ The script returns different exit codes for automation:
 
 ```bash
 #!/bin/bash
-./check-laravel-eol.sh
+./lvc.sh
 
 case $? in
     0)
@@ -233,8 +235,8 @@ jobs:
       - name: Check Laravel EOL
         id: eol-check
         run: |
-          chmod +x ./check-laravel-eol.sh
-          ./check-laravel-eol.sh
+          chmod +x ./lvc.sh
+          ./lvc.sh
         continue-on-error: true
       
       - name: Create Issue if EOL
@@ -263,7 +265,7 @@ for project in "$PROJECTS_DIR"/*; do
     if [ -d "$project" ] && [ -f "$project/composer.lock" ]; then
         echo "Checking $project..."
         cd "$project" || continue
-        ./check-laravel-eol.sh
+        ./lvc.sh
         echo ""
         echo "-----------------------------------"
         echo ""

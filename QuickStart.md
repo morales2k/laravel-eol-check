@@ -3,7 +3,7 @@
 ## 📋 What You Get
 
 This package includes:
-- `check-laravel-eol.sh` - Main script to check Laravel EOL status
+- `lvc.sh` - Main script to check Laravel EOL status
 - `README.md` - Comprehensive documentation
 - Example demo scripts showing different scenarios
 
@@ -24,14 +24,14 @@ brew install jq curl
 ### 2. Make Script Executable
 
 ```bash
-chmod +x check-laravel-eol.sh
+chmod +x lvc.sh
 ```
 
 ### 3. Run in Your Laravel Project
 
 ```bash
 cd /path/to/your/laravel/project
-./check-laravel-eol.sh
+./lvc.sh
 ```
 
 ## 📊 Example Outputs
@@ -137,7 +137,7 @@ for dir in /var/www/*/; do
     if [ -f "$dir/composer.lock" ]; then
         echo "Checking: $dir"
         cd "$dir"
-        /path/to/check-laravel-eol.sh
+        /path/to/lvc.sh
         echo "---"
     fi
 done
@@ -146,7 +146,7 @@ done
 ### Run in CI/CD (Exit Codes)
 
 ```bash
-./check-laravel-eol.sh
+./lvc.sh
 EXIT_CODE=$?
 
 if [ $EXIT_CODE -eq 2 ]; then
@@ -162,7 +162,7 @@ fi
 
 ```bash
 # Check every Monday at 9 AM
-0 9 * * 1 cd /var/www/myapp && /usr/local/bin/check-laravel-eol.sh | mail -s "Laravel EOL Check" admin@example.com
+0 9 * * 1 cd /var/www/myapp && /usr/local/bin/lvc.sh | mail -s "Laravel EOL Check" admin@example.com
 ```
 
 ## 📝 Exit Codes
